@@ -594,8 +594,19 @@ function gameLoop(timestamp) {
 }
 
 // Initialization
+const changeCharBtn = document.getElementById('change-char-btn');
+
+function goToCharacterSelect() {
+    isPlaying = false;
+    gameOverScreen.classList.add('hidden');
+    startScreen.classList.remove('hidden');
+    drawCharacterPreviews();
+    updateHighScoreDisplays();
+}
+
 startBtn.addEventListener('click', startGame);
 restartBtn.addEventListener('click', startGame);
+changeCharBtn.addEventListener('click', goToCharacterSelect);
 
 updateHighScoreDisplays();
 resizeCanvas();
