@@ -20,6 +20,21 @@
                 <h1>Sales Coin Catcher</h1>
                 <p>Catch coins, quotes, and banknotes.<br>Avoid meetings, spam, and admin work!</p>
                 <p>High Score: <span id="start-high-score">0</span></p>
+                <p class="pick-label">Pick your character:</p>
+                <div id="character-select">
+                    <div class="char-card selected" data-char="vinny">
+                        <canvas class="char-preview" id="preview-vinny" width="60" height="70"></canvas>
+                        <span>Vinny</span>
+                    </div>
+                    <div class="char-card" data-char="charlie">
+                        <canvas class="char-preview" id="preview-charlie" width="60" height="70"></canvas>
+                        <span>Charlie</span>
+                    </div>
+                    <div class="char-card" data-char="daryll">
+                        <canvas class="char-preview" id="preview-daryll" width="60" height="70"></canvas>
+                        <span>Daryll</span>
+                    </div>
+                </div>
                 <button id="start-btn">Start Game</button>
             </div>
 
