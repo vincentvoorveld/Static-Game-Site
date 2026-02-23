@@ -29,19 +29,21 @@ const characters = {
     },
     charlie: {
         name: 'Charlie',
-        suitColor: '#1a5276',
+        suitColor: '#c0392b',
         tieColor: '#f39c12',
-        skinColor: '#d4a574',
-        hairColor: '#c0392b',
-        hairStyle: 'curly'
+        skinColor: '#fce4d6',
+        hairColor: '#e25822',
+        hairStyle: 'long',
+        gender: 'female'
     },
     daryll: {
         name: 'Daryll',
-        suitColor: '#6c3483',
-        tieColor: '#2ecc71',
-        skinColor: '#8d5524',
+        suitColor: '#1a5276',
+        tieColor: '#e74c3c',
+        skinColor: '#f0c987',
         hairColor: '#1a1a1a',
-        hairStyle: 'flat'
+        hairStyle: 'short',
+        gender: 'male'
     }
 };
 
@@ -70,23 +72,39 @@ function drawCharacterWithConfig(c, x, y, w, h, char) {
     c.roundRect(x + 5, y + 18, w - 10, h - 18, 5);
     c.fill();
 
-    // Shirt collar
-    c.fillStyle = '#ecf0f1';
-    c.beginPath();
-    c.moveTo(x + w / 2 - 6, y + 18);
-    c.lineTo(x + w / 2 + 6, y + 18);
-    c.lineTo(x + w / 2 + 3, y + 26);
-    c.lineTo(x + w / 2 - 3, y + 26);
-    c.fill();
+    if (char.gender === 'female') {
+        // Blouse neckline
+        c.fillStyle = '#ecf0f1';
+        c.beginPath();
+        c.moveTo(x + w / 2 - 8, y + 18);
+        c.lineTo(x + w / 2 + 8, y + 18);
+        c.lineTo(x + w / 2, y + 26);
+        c.fill();
 
-    // Tie
-    c.fillStyle = char.tieColor;
-    c.beginPath();
-    c.moveTo(x + w / 2, y + 18);
-    c.lineTo(x + w / 2 + 4, y + 32);
-    c.lineTo(x + w / 2, y + 38);
-    c.lineTo(x + w / 2 - 4, y + 32);
-    c.fill();
+        // Necklace dot
+        c.fillStyle = char.tieColor;
+        c.beginPath();
+        c.arc(x + w / 2, y + 23, 2.5, 0, Math.PI * 2);
+        c.fill();
+    } else {
+        // Shirt collar
+        c.fillStyle = '#ecf0f1';
+        c.beginPath();
+        c.moveTo(x + w / 2 - 6, y + 18);
+        c.lineTo(x + w / 2 + 6, y + 18);
+        c.lineTo(x + w / 2 + 3, y + 26);
+        c.lineTo(x + w / 2 - 3, y + 26);
+        c.fill();
+
+        // Tie
+        c.fillStyle = char.tieColor;
+        c.beginPath();
+        c.moveTo(x + w / 2, y + 18);
+        c.lineTo(x + w / 2 + 4, y + 32);
+        c.lineTo(x + w / 2, y + 38);
+        c.lineTo(x + w / 2 - 4, y + 32);
+        c.fill();
+    }
 
     // Head
     c.fillStyle = char.skinColor;
@@ -100,45 +118,83 @@ function drawCharacterWithConfig(c, x, y, w, h, char) {
     c.arc(x + w / 2 - 4, y + 10, 3, 0, Math.PI * 2);
     c.arc(x + w / 2 + 4, y + 10, 3, 0, Math.PI * 2);
     c.fill();
-    c.fillStyle = '#2c3e50';
-    c.beginPath();
-    c.arc(x + w / 2 - 4, y + 10, 1.5, 0, Math.PI * 2);
-    c.arc(x + w / 2 + 4, y + 10, 1.5, 0, Math.PI * 2);
-    c.fill();
 
-    // Mouth
-    c.strokeStyle = '#2c3e50';
-    c.lineWidth = 1;
-    c.beginPath();
-    c.arc(x + w / 2, y + 16, 3, 0.1 * Math.PI, 0.9 * Math.PI);
-    c.stroke();
+    if (char.hairStyle === 'short') {
+        // Daryll: narrower dark eyes
+        c.fillStyle = '#1a1a1a';
+        c.beginPath();
+        c.ellipse(x + w / 2 - 4, y + 10, 1.8, 1.2, 0, 0, Math.PI * 2);
+        c.ellipse(x + w / 2 + 4, y + 10, 1.8, 1.2, 0, 0, Math.PI * 2);
+        c.fill();
+    } else {
+        c.fillStyle = '#2c3e50';
+        c.beginPath();
+        c.arc(x + w / 2 - 4, y + 10, 1.5, 0, Math.PI * 2);
+        c.arc(x + w / 2 + 4, y + 10, 1.5, 0, Math.PI * 2);
+        c.fill();
+    }
+
+    if (char.gender === 'female') {
+        // Eyelashes
+        c.strokeStyle = char.hairColor;
+        c.lineWidth = 1;
+        c.beginPath();
+        c.moveTo(x + w / 2 - 7, y + 8);
+        c.lineTo(x + w / 2 - 6, y + 7);
+        c.moveTo(x + w / 2 + 7, y + 8);
+        c.lineTo(x + w / 2 + 6, y + 7);
+        c.stroke();
+
+        // Lips
+        c.fillStyle = '#e74c3c';
+        c.beginPath();
+        c.ellipse(x + w / 2, y + 16, 3, 1.5, 0, 0, Math.PI * 2);
+        c.fill();
+    } else {
+        // Mouth
+        c.strokeStyle = '#2c3e50';
+        c.lineWidth = 1;
+        c.beginPath();
+        c.arc(x + w / 2, y + 16, 3, 0.1 * Math.PI, 0.9 * Math.PI);
+        c.stroke();
+    }
 
     // Hair
     c.fillStyle = char.hairColor;
     if (char.hairStyle === 'slick') {
+        // Vinny: slicked-back dark hair
         c.beginPath();
         c.ellipse(x + w / 2, y + 3, 13, 6, 0, Math.PI, 0);
         c.fill();
         c.beginPath();
         c.ellipse(x + w / 2 + 8, y + 5, 5, 8, 0.3, Math.PI * 1.2, Math.PI * 0.2);
         c.fill();
-    } else if (char.hairStyle === 'curly') {
-        for (let i = -2; i <= 2; i++) {
-            c.beginPath();
-            c.arc(x + w / 2 + i * 5, y + 2, 5, 0, Math.PI * 2);
-            c.fill();
-        }
+    } else if (char.hairStyle === 'long') {
+        // Charlie: long flowing ginger hair
         c.beginPath();
-        c.arc(x + w / 2 - 10, y + 6, 4, 0, Math.PI * 2);
-        c.arc(x + w / 2 + 10, y + 6, 4, 0, Math.PI * 2);
+        c.ellipse(x + w / 2, y + 2, 14, 7, 0, Math.PI, 0);
         c.fill();
-    } else if (char.hairStyle === 'flat') {
+        // Side hair flowing down
         c.beginPath();
-        c.roundRect(x + w / 2 - 14, y - 2, 28, 10, [6, 6, 0, 0]);
+        c.roundRect(x + w / 2 - 15, y + 2, 6, 20, [3, 3, 3, 3]);
         c.fill();
         c.beginPath();
-        c.rect(x + w / 2 - 13, y + 4, 4, 6);
-        c.rect(x + w / 2 + 9, y + 4, 4, 6);
+        c.roundRect(x + w / 2 + 9, y + 2, 6, 20, [3, 3, 3, 3]);
+        c.fill();
+        // Top volume
+        c.beginPath();
+        c.ellipse(x + w / 2 - 6, y + 1, 6, 5, -0.2, Math.PI, 0);
+        c.fill();
+        c.beginPath();
+        c.ellipse(x + w / 2 + 6, y + 1, 6, 5, 0.2, Math.PI, 0);
+        c.fill();
+    } else if (char.hairStyle === 'short') {
+        // Daryll: short neat black hair
+        c.beginPath();
+        c.ellipse(x + w / 2, y + 3, 13, 7, 0, Math.PI, 0);
+        c.fill();
+        c.beginPath();
+        c.rect(x + w / 2 - 12, y + 3, 24, 3);
         c.fill();
     }
 }
