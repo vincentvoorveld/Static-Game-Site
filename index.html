@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sales Coin Catcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="ui-layer">
+            <div id="top-bar">
+                <div class="stat">Score: <span id="score">0</span></div>
+                <div class="stat">Lives: <span id="lives">❤️❤️❤️</span></div>
+                <div class="stat">Level: <span id="level">1</span></div>
+                <div class="stat hint">← → to move</div>
+            </div>
+            
+            <div id="start-screen" class="overlay">
+                <h1>Sales Coin Catcher</h1>
+                <p>Catch coins, quotes, and banknotes.<br>Avoid meetings, spam, and admin work!</p>
+                <p>High Score: <span id="start-high-score">0</span></p>
+                <button id="start-btn">Start Game</button>
+            </div>
+
+            <div id="game-over-screen" class="overlay hidden">
+                <h1>Game Over</h1>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <p>High Score: <span id="game-over-high-score">0</span></p>
+                <button id="restart-btn">Restart</button>
+            </div>
+        </div>
+        <canvas id="game-canvas"></canvas>
+        <div id="mobile-controls">
+            <button id="btn-left">←</button>
+            <button id="btn-right">→</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
