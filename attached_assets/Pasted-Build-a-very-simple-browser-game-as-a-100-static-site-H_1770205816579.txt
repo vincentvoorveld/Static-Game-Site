@@ -1,0 +1,79 @@
+Build a very simple browser game as a 100% static site (HTML, CSS, and vanilla JavaScript only; no backend, no external libraries). The game must run by opening index.html directly and must work when hosted on GitHub Pages.
+
+Game concept:
+- The player is a “salesperson” represented by a simple character icon.
+- The player collects items that fall from the top of the screen:
+  1) Coins labeled “3C” (good)
+  2) Quotes (good)
+  3) Banknotes (good)
+- The player must avoid “Distractions” (bad items) such as:
+  - Meeting
+  - Spam
+  - No-show
+  - Admin work
+
+Very simple gameplay:
+- The player moves left and right to catch items.
+- Controls:
+  - Desktop: Left and Right arrow keys
+  - Mobile: On-screen left and right buttons OR touch dragging
+- Items fall continuously from the top of the screen.
+- Scoring:
+  - “3C” coin: +3 points
+  - Quote: +10 points
+  - Banknote: +25 points
+- Catching a bad item costs 1 life.
+- Missing a good item has no penalty.
+- The player starts with 3 lives.
+- When lives reach 0, the game ends.
+
+Difficulty and progression:
+- Every 20 seconds, slightly increase the falling speed and spawn rate.
+- Show a “Level” indicator that increases with difficulty.
+
+Visual style (keep it clean and minimal):
+- Use an HTML5 Canvas OR simple DOM elements (choose the simplest approach).
+- Background: simple office-themed colors.
+- Item visuals:
+  - 3C coin: round, yellow-ish, text “3C”
+  - Quote: paper-like rectangle, text “Quote”
+  - Banknote: green rectangle, “€” symbol
+  - Bad items: red-ish rectangles with their label
+- Add small, subtle animations (for example, a tiny bounce when an item is caught).
+
+User interface:
+- Top bar showing:
+  - Score
+  - Lives (heart icons)
+  - Level
+  - Control hint: “← → to move”
+- Start screen with:
+  - Game title: “Sales Coin Catcher” (or similar)
+  - A “Start” button
+- Game Over overlay showing:
+  - Final score
+  - High score
+  - “Restart” button
+
+Project structure:
+- /index.html
+- /style.css
+- /game.js
+- No build step
+- No npm
+- No frameworks
+
+Technical requirements:
+- Use requestAnimationFrame for the game loop (if using Canvas).
+- Make the game responsive and playable on different screen sizes.
+- Use relative paths for all assets.
+- Comment the code briefly and keep it easy to understand.
+
+Extra:
+- Save the best score using localStorage.
+- Display the high score on the start screen and game over screen.
+
+Documentation:
+- Include a short README.md explaining:
+  - How to run the game locally (open index.html)
+  - How to deploy it using GitHub Pages (Settings → Pages → Deploy from branch)
